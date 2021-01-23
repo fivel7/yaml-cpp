@@ -30,7 +30,7 @@ struct StringEscaping {
 
 namespace Utils {
 StringFormat::value ComputeStringFormat(const std::string& str,
-                                        EMITTER_MANIP strFormat,
+                                        EMITTER_MANIP::value strFormat,
                                         FlowType::value flowType,
                                         bool escapeNonAscii);
 

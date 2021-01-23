@@ -10,63 +10,71 @@
 #include <string>
 
 namespace YAML {
-enum EMITTER_MANIP {
-  // general manipulators
-  Auto,
-  TagByKind,
-  Newline,
+struct EMITTER_MANIP {
+	enum value {
+		NoType,
 
-  // output character set
-  EmitNonAscii,
-  EscapeNonAscii,
-  EscapeAsJson,
+		Local, //FmtScope
+		Global,
 
-  // string manipulators
-  // Auto, // duplicate
-  SingleQuoted,
-  DoubleQuoted,
-  Literal,
+		Seq, //GroupType
+		Map,
 
-  // null manipulators
-  LowerNull,
-  UpperNull,
-  CamelNull,
-  TildeNull,
+		Flow, //FlowType
+		Block,
 
-  // bool manipulators
-  YesNoBool,      // yes, no
-  TrueFalseBool,  // true, false
-  OnOffBool,      // on, off
-  UpperCase,      // TRUE, N
-  LowerCase,      // f, yes
-  CamelCase,      // No, Off
-  LongBool,       // yes, On
-  ShortBool,      // y, t
+		// general manipulators
+		Auto,
+		TagByKind,
+		Newline,
 
-  // int manipulators
-  Dec,
-  Hex,
-  Oct,
+		// output character set
+		EmitNonAscii,
+		EscapeNonAscii,
+		EscapeAsJson,
 
-  // document manipulators
-  BeginDoc,
-  EndDoc,
+		// string manipulators
+		// Auto, // duplicate
+		SingleQuoted,
+		DoubleQuoted,
+		Literal,
 
-  // sequence manipulators
-  BeginSeq,
-  EndSeq,
-  Flow,
-  Block,
+		// null manipulators
+		LowerNull,
+		UpperNull,
+		CamelNull,
+		TildeNull,
 
-  // map manipulators
-  BeginMap,
-  EndMap,
-  Key,
-  Value,
-  // Flow, // duplicate
-  // Block, // duplicate
-  // Auto, // duplicate
-  LongKey
+		// bool manipulators
+		YesNoBool,      // yes, no
+		TrueFalseBool,  // true, false
+		OnOffBool,      // on, off
+		UpperCase,      // TRUE, N
+		LowerCase,      // f, yes
+		CamelCase,      // No, Off
+		LongBool,       // yes, On
+		ShortBool,      // y, t
+
+		// int manipulators
+		Dec,
+		Hex,
+		Oct,
+
+		// document manipulators
+		BeginDoc,
+		EndDoc,
+
+		// sequence manipulators
+		BeginSeq,
+		EndSeq,
+
+		// map manipulators
+		BeginMap,
+		EndMap,
+		Key,
+		Value,
+		LongKey
+	};
 };
 
 struct _Indent {

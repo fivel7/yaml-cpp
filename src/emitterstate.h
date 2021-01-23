@@ -19,13 +19,13 @@
 
 namespace YAML {
 struct FmtScope {
-  enum value { Local, Global };
+  enum value { Local = EMITTER_MANIP::Local, Global = EMITTER_MANIP::Global};
 };
 struct GroupType {
-  enum value { NoType, Seq, Map };
+  enum value { NoType = EMITTER_MANIP::NoType, Seq = EMITTER_MANIP::Seq, Map = EMITTER_MANIP::Map};
 };
 struct FlowType {
-  enum value { NoType, Flow, Block };
+  enum value { NoType = EMITTER_MANIP::NoType, Flow = EMITTER_MANIP::Flow, Block = EMITTER_MANIP::Block};
 };
 
 class EmitterState {
@@ -77,28 +77,28 @@ class EmitterState {
   void RestoreGlobalModifiedSettings();
 
   // formatters
-  void SetLocalValue(EMITTER_MANIP value);
+  void SetLocalValue(EMITTER_MANIP::value value);
 
-  bool SetOutputCharset(EMITTER_MANIP value, FmtScope::value scope);
-  EMITTER_MANIP GetOutputCharset() const { return m_charset.get(); }
+  bool SetOutputCharset(EMITTER_MANIP::value value, FmtScope::value scope);
+  EMITTER_MANIP::value GetOutputCharset() const { return m_charset.get(); }
 
-  bool SetStringFormat(EMITTER_MANIP value, FmtScope::value scope);
-  EMITTER_MANIP GetStringFormat() const { return m_strFmt.get(); }
+  bool SetStringFormat(EMITTER_MANIP::value value, FmtScope::value scope);
+  EMITTER_MANIP::value GetStringFormat() const { return m_strFmt.get(); }
 
-  bool SetBoolFormat(EMITTER_MANIP value, FmtScope::value scope);
-  EMITTER_MANIP GetBoolFormat() const { return m_boolFmt.get(); }
+  bool SetBoolFormat(EMITTER_MANIP::value value, FmtScope::value scope);
+  EMITTER_MANIP::value GetBoolFormat() const { return m_boolFmt.get(); }
 
-  bool SetBoolLengthFormat(EMITTER_MANIP value, FmtScope::value scope);
-  EMITTER_MANIP GetBoolLengthFormat() const { return m_boolLengthFmt.get(); }
+  bool SetBoolLengthFormat(EMITTER_MANIP::value value, FmtScope::value scope);
+  EMITTER_MANIP::value GetBoolLengthFormat() const { return m_boolLengthFmt.get(); }
 
-  bool SetBoolCaseFormat(EMITTER_MANIP value, FmtScope::value scope);
-  EMITTER_MANIP GetBoolCaseFormat() const { return m_boolCaseFmt.get(); }
+  bool SetBoolCaseFormat(EMITTER_MANIP::value value, FmtScope::value scope);
+  EMITTER_MANIP::value GetBoolCaseFormat() const { return m_boolCaseFmt.get(); }
 
-  bool SetNullFormat(EMITTER_MANIP value, FmtScope::value scope);
-  EMITTER_MANIP GetNullFormat() const { return m_nullFmt.get(); }
+  bool SetNullFormat(EMITTER_MANIP::value value, FmtScope::value scope);
+  EMITTER_MANIP::value GetNullFormat() const { return m_nullFmt.get(); }
 
-  bool SetIntFormat(EMITTER_MANIP value, FmtScope::value scope);
-  EMITTER_MANIP GetIntFormat() const { return m_intFmt.get(); }
+  bool SetIntFormat(EMITTER_MANIP::value value, FmtScope::value scope);
+  EMITTER_MANIP::value GetIntFormat() const { return m_intFmt.get(); }
 
   bool SetIndent(std::size_t value, FmtScope::value scope);
   std::size_t GetIndent() const { return m_indent.get(); }
@@ -108,12 +108,12 @@ class EmitterState {
   bool SetPostCommentIndent(std::size_t value, FmtScope::value scope);
   std::size_t GetPostCommentIndent() const { return m_postCommentIndent.get(); }
 
-  bool SetFlowType(GroupType::value groupType, EMITTER_MANIP value,
+  bool SetFlowType(GroupType::value groupType, EMITTER_MANIP::value value,
                    FmtScope::value scope);
-  EMITTER_MANIP GetFlowType(GroupType::value groupType) const;
+  EMITTER_MANIP::value GetFlowType(GroupType::value groupType) const;
 
-  bool SetMapKeyFormat(EMITTER_MANIP value, FmtScope::value scope);
-  EMITTER_MANIP GetMapKeyFormat() const { return m_mapKeyFmt.get(); }
+  bool SetMapKeyFormat(EMITTER_MANIP::value value, FmtScope::value scope);
+  EMITTER_MANIP::value GetMapKeyFormat() const { return m_mapKeyFmt.get(); }
 
   bool SetFloatPrecision(std::size_t value, FmtScope::value scope);
   std::size_t GetFloatPrecision() const { return m_floatPrecision.get(); }
@@ -132,18 +132,18 @@ class EmitterState {
   std::string m_lastError;
 
   // other state
-  Setting<EMITTER_MANIP> m_charset;
-  Setting<EMITTER_MANIP> m_strFmt;
-  Setting<EMITTER_MANIP> m_boolFmt;
-  Setting<EMITTER_MANIP> m_boolLengthFmt;
-  Setting<EMITTER_MANIP> m_boolCaseFmt;
-  Setting<EMITTER_MANIP> m_nullFmt;
-  Setting<EMITTER_MANIP> m_intFmt;
+  Setting<EMITTER_MANIP::value> m_charset;
+  Setting<EMITTER_MANIP::value> m_strFmt;
+  Setting<EMITTER_MANIP::value> m_boolFmt;
+  Setting<EMITTER_MANIP::value> m_boolLengthFmt;
+  Setting<EMITTER_MANIP::value> m_boolCaseFmt;
+  Setting<EMITTER_MANIP::value> m_nullFmt;
+  Setting<EMITTER_MANIP::value> m_intFmt;
   Setting<std::size_t> m_indent;
   Setting<std::size_t> m_preCommentIndent, m_postCommentIndent;
-  Setting<EMITTER_MANIP> m_seqFmt;
-  Setting<EMITTER_MANIP> m_mapFmt;
-  Setting<EMITTER_MANIP> m_mapKeyFmt;
+  Setting<EMITTER_MANIP::value> m_seqFmt;
+  Setting<EMITTER_MANIP::value> m_mapFmt;
+  Setting<EMITTER_MANIP::value> m_mapKeyFmt;
   Setting<std::size_t> m_floatPrecision;
   Setting<std::size_t> m_doublePrecision;
 

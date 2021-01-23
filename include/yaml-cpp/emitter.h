@@ -47,13 +47,13 @@ class YAML_CPP_API Emitter {
   const std::string GetLastError() const;
 
   // global setters
-  bool SetOutputCharset(EMITTER_MANIP value);
-  bool SetStringFormat(EMITTER_MANIP value);
-  bool SetBoolFormat(EMITTER_MANIP value);
-  bool SetNullFormat(EMITTER_MANIP value);
-  bool SetIntBase(EMITTER_MANIP value);
-  bool SetSeqFormat(EMITTER_MANIP value);
-  bool SetMapFormat(EMITTER_MANIP value);
+  bool SetOutputCharset(EMITTER_MANIP::value value);
+  bool SetStringFormat(EMITTER_MANIP::value value);
+  bool SetBoolFormat(EMITTER_MANIP::value value);
+  bool SetNullFormat(EMITTER_MANIP::value value);
+  bool SetIntBase(EMITTER_MANIP::value value);
+  bool SetSeqFormat(EMITTER_MANIP::value value);
+  bool SetMapFormat(EMITTER_MANIP::value value);
   bool SetIndent(std::size_t n);
   bool SetPreCommentIndent(std::size_t n);
   bool SetPostCommentIndent(std::size_t n);
@@ -62,7 +62,7 @@ class YAML_CPP_API Emitter {
   void RestoreGlobalModifiedSettings();
 
   // local setters
-  Emitter& SetLocalValue(EMITTER_MANIP value);
+  Emitter& SetLocalValue(EMITTER_MANIP::value value);
   Emitter& SetLocalIndent(const _Indent& indent);
   Emitter& SetLocalPrecision(const _Precision& precision);
 
@@ -265,7 +265,7 @@ inline Emitter& operator<<(Emitter& emitter, double v) {
   return emitter.WriteStreamable(v);
 }
 
-inline Emitter& operator<<(Emitter& emitter, EMITTER_MANIP value) {
+inline Emitter& operator<<(Emitter& emitter, EMITTER_MANIP::value value) {
   return emitter.SetLocalValue(value);
 }
 
